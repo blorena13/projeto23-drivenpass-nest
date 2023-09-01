@@ -8,19 +8,24 @@ import { UsersService } from './users/users.service';
 import { UserOn } from './decorators/user.decorator';
 import { User } from '@prisma/client';
 import { DeleteDto } from './users/dto/delete-user.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('app')
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService) {}
 
   @Get('/health')
+  @ApiOperation({summary: "Checks APIs health."})
+  @ApiResponse({status: HttpStatus.OK, description: "I'm okay!"})
   getHealth(): string {
     return this.appService.getHealth();
   }
 
   @Delete('/erase')
   @UseGuards(AuthGuard)
+  @ApiOperation({summary: "Delete a user and clear user data."})
   deleteAll(@Body() body: DeleteDto,  @UserOn() userOn: User){
     try{
       if(!body.password) throw new UnauthorizedException();
