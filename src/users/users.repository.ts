@@ -6,7 +6,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 @Injectable()
 export class UsersRepository {
 
-
   private SALT = 10;
   constructor(private readonly prisma: PrismaService) { }
 
@@ -28,6 +27,12 @@ export class UsersRepository {
   getById(id: number) {
     return this.prisma.user.findUnique({
       where: { id }
+    })
+  }
+
+  deleteById(id: number) {
+    return this.prisma.user.delete({
+      where: {id}
     })
   }
 }

@@ -14,7 +14,11 @@ export class CredentialsRepository {
   const cryptr = new Cryptr('myTotallySecretKey');
 
     return this.prisma.credentials.create({
-        data: {...body, password: cryptr.encrypt(body.password), userId}
+        data: {
+          ...body, 
+          password: cryptr.encrypt(body.password), 
+          userId
+        }
     })
   }
 
@@ -62,6 +66,13 @@ export class CredentialsRepository {
   deleteById(id: number) {
     return this.prisma.credentials.delete({
       where: {id}
+    })
+  }
+
+
+  removeByUserId(userId: number) {
+    return this.prisma.credentials.deleteMany({
+      where: {userId}
     })
   }
 

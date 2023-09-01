@@ -42,7 +42,7 @@ model Card {
   title String
   cardNumber String
   name String
-  securityCode Int
+  securityCode String
   date String
   password String
   isVirtual Boolean

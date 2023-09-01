@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateNoteDto } from './dto/create-note.dto';
-import { UpdateNoteDto } from './dto/update-note.dto';
+import { NotesRepository } from './notes.repository';
 
 @Injectable()
 export class NotesService {
-  create(createNoteDto: CreateNoteDto) {
-    return 'This action adds a new note';
+  constructor(private readonly notesRepository: NotesRepository) { }
+
+  async create(body: CreateNoteDto, userId: number) {
+    if(!body.title || !body.notes) throw new BadRequestException();
+    const verifyTitle = await this.notesRepository.getByTitle(body.title, userId);
+    if(verifyTitle) throw new ConflictException("This title already exists!");
+
+    return this.notesRepository.createNotes(body, userId);
   }
 
-  findAll() {
-    return `This action returns all notes`;
+  findAll(userId: number) {
+    return this.notesRepository.findAllUserId(userId);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} note`;
+  async findOne(id: number, userId: number) {
+    const credential = await this.notesRepository.findById(id);
+
+    if(!credential) throw new NotFoundException("Notes not found!");
+    if(credential.userId !== userId) throw new ForbiddenException("This notes belongs another user!");
+    return credential;
   }
 
-  update(id: number, updateNoteDto: UpdateNoteDto) {
-    return `This action updates a #${id} note`;
+  async remove(id: number, userId: number) {
+    const credential = await this.notesRepository.findById(id);
+
+    if(!credential) throw new NotFoundException("Notes not found!");
+    if(credential.userId !== userId) throw new ForbiddenException("This notes belongs another user!");
+
+    return this.notesRepository.deleteById(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} note`;
+  removeByUserId(userId: number){
+    return this.notesRepository.deleteByUserId(userId);
   }
 }

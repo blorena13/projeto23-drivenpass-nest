@@ -1,4 +1,4 @@
-import { ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCredentialDto } from './dto/create-credential.dto';
 import { CredentialsRepository } from './credentials.repository';
 import Cryptr from 'cryptr';
@@ -9,10 +9,10 @@ export class CredentialsService {
 
   async create(body: CreateCredentialDto, userId: number) {
 
-    const {name, password, title, url} = body;
+    if(!body.title || !body.url || !body.name || !body.password) throw new BadRequestException()
 
     const verifyTitle = await this.credentialsRepository.getByTitle(body.title, userId);
-    if(verifyTitle) throw new ConflictException();
+    if(verifyTitle) throw new ConflictException("This title already exists!");
 
     return this.credentialsRepository.createCredentials(body, userId);
   }
@@ -37,5 +37,9 @@ export class CredentialsService {
     if(credential.userId !== userId) throw new ForbiddenException("This credential belongs to another user!");
 
     return this.credentialsRepository.deleteById(id);
+  }
+
+  async removeByUserId(userId: number){
+    return await this.credentialsRepository.removeByUserId(userId);
   }
 }

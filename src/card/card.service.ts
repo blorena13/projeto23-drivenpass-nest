@@ -1,26 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCardDto } from './dto/create-card.dto';
-import { UpdateCardDto } from './dto/update-card.dto';
+import { CardRepository } from './card.repository';
 
 @Injectable()
 export class CardService {
-  create(createCardDto: CreateCardDto) {
-    return 'This action adds a new card';
+  constructor(private readonly cardRepository: CardRepository) { }
+
+  async create(body: CreateCardDto, userId: number) {
+
+    if(!body.title || 
+      !body.cardNumber || 
+      !body.name || 
+      !body.securityCode || 
+      !body.date || 
+      !body.password || 
+      !body.isVirtual || 
+      !body.type) { throw new BadRequestException();} 
+
+    const verifyTitle = await this.cardRepository.getByTitle(body.title, userId);
+    if(verifyTitle) throw new ConflictException("This title already exists!");
+
+    return this.cardRepository.createCard(body, userId);
   }
 
-  findAll() {
-    return `This action returns all card`;
+  findAll(userId: number) {
+    return this.cardRepository.findAllByUserId(userId);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} card`;
+ async findOne(id: number, userId: number) {
+
+  const card = await this.cardRepository.findById(id);
+  if(!card) throw new NotFoundException("card not found!");
+  if(card.userId !== userId) throw new ForbiddenException("This card belongs another user!");
+
+    return card;
   }
 
-  update(id: number, updateCardDto: UpdateCardDto) {
-    return `This action updates a #${id} card`;
+  async remove(id: number, userId: number) {
+    const card = await this.cardRepository.findById(id);
+    if(!card) throw new NotFoundException("card not found!");
+    if(card.userId !== userId) throw new ForbiddenException("This card belongs another user!");
+
+    return this.cardRepository.deleteById(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} card`;
+  removeByUserId(userId: number){
+    return this.cardRepository.deleteByUserId(userId);
   }
 }
