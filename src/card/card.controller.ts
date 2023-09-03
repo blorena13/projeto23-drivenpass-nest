@@ -42,7 +42,7 @@ export class CardController {
   @Delete(':id')
   @UseGuards(AuthGuard)
   @ApiOperation({summary: "Delete a specific user cards."})
-  remove(@Param('id') id: string, @UserOn() userOn: User) {
-    return this.cardService.remove(+id, userOn.id);
+  async remove(@Param('id') id: string, @UserOn() userOn: User) {
+    return await this.cardService.remove(+id, userOn.id);
   }
 }

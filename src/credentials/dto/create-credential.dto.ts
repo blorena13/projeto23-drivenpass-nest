@@ -21,4 +21,8 @@ export class CreateCredentialDto {
     @IsNotEmpty()
     @ApiProperty({example: "testando", description: "Password for credential."})
     password: string;
+
+    constructor(params?: Partial<CreateCredentialDto>) {
+        if (params) Object.assign(this, params);
+      }
 }

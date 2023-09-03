@@ -11,4 +11,8 @@ export class CreateNoteDto {
     @IsString()
     @ApiProperty({example: "loves u taylor !", description: "Notes for create a notes."})
     notes: string;
+
+    constructor(params?: Partial<CreateNoteDto>) {
+        if (params) Object.assign(this, params);
+    }
 }

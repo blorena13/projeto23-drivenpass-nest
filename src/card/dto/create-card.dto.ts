@@ -37,4 +37,9 @@ export class CreateCardDto {
     @IsNotEmpty()
     @ApiProperty({example: "crédito", description: "If card is debit, credit or both."})
     type: string;
+
+    constructor(params?: Partial<CreateCardDto>) {
+        if (params) Object.assign(this, params);
+    }
 }
+

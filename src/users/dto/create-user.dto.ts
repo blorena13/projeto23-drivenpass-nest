@@ -12,4 +12,8 @@ export class CreateUserDto {
     @IsStrongPassword()
     @ApiProperty({example: "Senh@fort1!", description: "Password for user."})
     password: string;
+
+    constructor(params?: Partial<CreateUserDto>) {
+        if (params) Object.assign(this, params);
+      }
 }
