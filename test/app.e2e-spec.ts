@@ -21,4 +21,8 @@ describe('AppController (e2e)', () => {
       .expect(HttpStatus.OK)
     .expect("I'm okay!");
   });
+
+  it('/erase DELETE', () => {
+    
+  })
 });

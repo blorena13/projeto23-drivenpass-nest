@@ -21,7 +21,7 @@
     "test:prisma": "npm run test:load-envs prisma migrate deploy",
     "test:e2e": "npm run test:load-envs -- jest -- --runInBand --config ./test/jest-e2e.json",
     "prisma:prod": "npx prisma migrate deploy",
-    "prisma:seed": "npx prisma db seed"
+    "prisma:prod:seed": "npx prisma db seed"
   },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
