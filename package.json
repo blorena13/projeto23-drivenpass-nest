@@ -23,6 +23,9 @@
     "prisma:prod": "npx prisma migrate deploy",
     "prisma:prod:seed": "npx prisma db seed"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
     "@nestjs/common": "^10.0.0",
