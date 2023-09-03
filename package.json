@@ -21,7 +21,10 @@
     "test:prisma": "npm run test:load-envs prisma migrate deploy",
     "test:e2e": "npm run test:load-envs -- jest -- --runInBand --config ./test/jest-e2e.json",
     "prisma:prod": "npx prisma migrate deploy",
-    "prisma:prod:seed": "npx prisma db seed"
+    "prisma:prod:seed": "npx prisma db seed",
+    "dev:seed": "npm run dev:load-envs prisma db seed",
+    "dev:migration:run": "npm run dev:load-envs prisma migrate deploy",
+    "dev:migration:generate": "npm run dev:load-envs prisma migrate dev"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
