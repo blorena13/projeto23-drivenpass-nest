@@ -11,11 +11,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-<<<<<<< HEAD
     "start:prod": "npm run prisma:prod && npm run prisma:prod:seed && node src/main.ts",
-=======
-    "start:prod": "npm run prisma:prod && npm run prisma:prod:seed && node dist/main.ts",
->>>>>>> 97871201aaaa87f3b7c709a0ec7b5fea38cab7e6
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
