@@ -33,7 +33,9 @@ describe('credentials tests', () => {
         await prisma.$disconnect();
     });
 
-    it('POST /cards => should create card', async () => {
+    it('ERASE /erase => should clean db', async () => {
+
+        
 
     })
 })
