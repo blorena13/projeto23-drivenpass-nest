@@ -1,73 +1,40 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# DrivenPass
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Uma maneira rápida e segura de guardar informações confidenciais mas que não podem ser esquecidas, como: senha de rede social, informações do cartão e anotações importantes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Sobre 
 
-## Description
+Essa aplicação back-end foi desenvolvida com o intuito de guardar informações confidenciais de um usuário. Permitindo que as informações sejam salvas no banco de dados porém criptografadas, com o objetivo de proteger os dados. 
+Nesse projeto, tem funções como:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Cadastro.
+- Login.
+- Criar, salvar e listar credenciais de um determinado usuário.
+- Criar, salvar e listar notas importantes.
+- Criar, salvar e listar informações sobre o cartão do usuário.
+- E se necessário, excluir a conta do usuário e todas as informações correspondentes.
 
-## Installation
+## Tecnologias
 
+ ![Static Badge](https://img.shields.io/badge/TypeScript--3178C6?style=for-the-badge&logo=TypeScript&logoColor=%23FFFFFF&label=Typescript&labelColor=%233178C6&color=%23141414)
+
+ ![Static Badge](https://img.shields.io/badge/Node.js--%23339933?style=for-the-badge&logo=Node.js&logoColor=white&label=Node.js&labelColor=%23339933)
+
+ ![Static Badge](https://img.shields.io/badge/jest--%23C21325?style=for-the-badge&logo=jest&logoColor=white&label=jest&labelColor=%23C21325)
+
+ ![Static Badge](https://img.shields.io/badge/Prisma%20-%20%232D3748?style=for-the-badge&logo=Prisma&logoColor=%23FFFFFF)
+
+![Static Badge](https://img.shields.io/badge/NestJS%20-%20%23E0234E?style=for-the-badge&logo=NestJS&logoColor=%23FFFFFF)
+
+
+## Como rodar o projeto
+
+1. Clonar este repositório.
+2. Instale as dependências.
 ```bash
-$ npm install
+npm i
 ```
-
-## Running the app
-
+3. Por fim, rode a aplicação utilizando:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run start:dev
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
